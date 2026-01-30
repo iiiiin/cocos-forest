@@ -22,7 +22,7 @@
 
 ## 기술 스택
 
-### Frontend
+#### Frontend
 <div align="center">
   <img src="https://img.shields.io/badge/react%20native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
   <img src="https://img.shields.io/badge/expo-000000?style=for-the-badge&logo=expo&logoColor=white">
@@ -30,14 +30,14 @@
   <img src="https://img.shields.io/badge/zustand-000000?style=for-the-badge&logo=zustand&logoColor=white">
 </div>
 
-### Backend
+#### Backend
 <div align="center">
   <img src="https://img.shields.io/badge/spring%20boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   <img src="https://img.shields.io/badge/jpa-59666C?style=for-the-badge&logo=hibernate&logoColor=white">
   <img src="https://img.shields.io/badge/clova%20ocr-03C75A?style=for-the-badge&logo=naver&logoColor=white">
 </div>
 
-### DevOps & Infra
+#### DevOps & Infra
 <div align="center">
   <img src="https://img.shields.io/badge/aws%20ec2-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
   <img src="https://img.shields.io/badge/vertex%20ai-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white">
@@ -46,7 +46,7 @@
   <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
 </div>
 
-### Database
+#### Database
 <div align="center">
   <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
   <img src="https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
@@ -70,12 +70,15 @@
 
 ```mermaid
 flowchart LR
+  classDef app fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px,color:#1B5E20;
+  classDef backend fill:#E3F2FD,stroke:#1565C0,stroke-width:1px,color:#0D47A1;
+  classDef data fill:#FFF3E0,stroke:#EF6C00,stroke-width:1px,color:#E65100;
+  classDef ai fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1px,color:#4A148C;
+  classDef external fill:#FCE4EC,stroke:#AD1457,stroke-width:1px,color:#880E4F;
+  classDef cicd fill:#ECEFF1,stroke:#455A64,stroke-width:1px,color:#263238;
+
   subgraph Mobile App
     RN[React Native / Expo]
-  end
-
-  subgraph WearOS
-    WO[Kotlin WearOS App]
   end
 
   subgraph Backend
@@ -88,33 +91,47 @@ flowchart LR
   end
 
   subgraph AI
-    OCR[OCR Service]
-    GCP[Google Cloud AI]
+    OCR[Clova OCR]
+    VAI[Vertex AI]
   end
 
   subgraph External
     SSAFY[SSAFY 금융 API]
   end
 
+  subgraph CI_CD
+    Jenkins[Jenkins]
+    Docker[Docker]
+    EC2[AWS EC2]
+    Nginx[Nginx]
+  end
+
   RN -->|REST| API
-  WO -->|REST| API
   API --> DB
   API --> Redis
   API --> SSAFY
   API --> OCR
-  API --> GCP
+  API --> VAI
+  Jenkins --> Docker --> EC2 --> Nginx
+
+  class RN app;
+  class API backend;
+  class DB,Redis data;
+  class OCR,VAI ai;
+  class SSAFY external;
+  class Jenkins,Docker,EC2,Nginx cicd;
 ```
 
 ## 실행 방법
 
-### Frontend (React Native / Expo)
+#### Frontend (React Native / Expo)
 ```bash
 cd frontend/cocosforest
 npm install
 npm run start
 ```
 
-### Backend (Spring Boot)
+#### Backend (Spring Boot)
 ```bash
 cd backend
 ./gradlew bootRun
