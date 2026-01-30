@@ -1,96 +1,148 @@
- - README
- 
-    # 🌴 코코의 숲 (Coco’s Forest)
-    
-    ## 탄소 절약 챌린지 × 금융 소비 분석 × 게임화
-    
-    > 코코의 숲은 금융 소비 내역을 기반으로 탄소 배출량을 환산하고, 챌린지와 게임적 요소를 통해 즐겁게 환경 보호를 실천할 수 있는 서비스입니다.
-    > 
-    > 
-    > 소비 내역 → 탄소 발자국 → 챌린지 → 포인트 → 숲 성장으로 이어지는 선순환 구조를 통해, 사용자가 꾸준히 환경 보호 습관을 만들 수 있도록 돕습니다.
-    > 
-    - **개발 기간** : 2025.09 ~ (진행 중)
-    - **플랫폼** : Mobile (kotlin), Android SDK 기반 네이티브 앱
-    - **개발 인원** : 6명
-    
-    ---
-    
-    ## 👥 팀원
-    
-    | 이름 | 역할 |
-    | --- | --- |
-    | 김태윤 (팀장) | 백엔드, DB 설계, 금융 API 연동 |
-    | 권인 | 프론트엔드, React Native, UI 구현 |
-    | 김민주 | 프론트엔드, 챌린지/랭킹 화면 구현 |
-    | 정원준 | 백엔드, 챌린지/보상 API |
-    | 박민수 | 인프라, CI/CD, 배포 관리 |
-    | 박진주 | 디자이너, 코코/숲 아트 에셋 제작 |
-    
-    ---
-    
-    ## 🧰 기술 스택
-    
-    <div align="center">  
-      <!-- Core -->  
-      <img src="https://img.shields.io/badge/kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white">  
-      <img src="https://img.shields.io/badge/java-EA2D2E?style=for-the-badge&logo=java&logoColor=white">  
-      <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">  
-      <br/>  
-      <!-- Frontend -->  
-      <img src="https://img.shields.io/badge/android%20sdk-3DDC84?style=for-the-badge&logo=android&logoColor=white">  
-      <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">  
-      <img src="https://img.shields.io/badge/svg-FFB13B?style=for-the-badge&logoColor=white">  
-      <br/>  
-      <!-- DevOps / Cloud -->  
-      <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">  
-      <img src="https://img.shields.io/badge/jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white">  
-      <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">  
-      <br/>  
-    </div>
-    
-    ---
-    
-    ## 🌐 메인화면 기능
-    
-    1. **아이소메트릭 필드**
-        - 숲을 2D 아이소메트릭 뷰로 표현
-    2. **나무 종류 1개 (초기 버전)**
-        - 이후 다양한 나무와 숲 꾸미기 요소 확장
-    3. **챌린지 성공 → 포인트 사용법**
-        - 🌱 나무 심기
-        - 💧 물주기
-    4. **나무 상태 관리 (HP 시스템)**
-        - **+ 요인** : 물주기, 하루 평균 탄소 절약 성공
-        - **요인** : 물 미지급, 탄소 목표 초과
-        - HP 단계별 3단계 시각화 (건강 → 약간 시듦 → 심하게 시듦)
-    5. **코코 캐릭터**
-        - 기본 위치: 왼쪽 상단 (랜덤 위치 확장 가능)
-        - 이벤트 발생 시 말풍선으로 피드백
-    
-    ---
-    
-    ## ✨ 주요 기능
-    
-    ### 🔑 금융 연동 & 소비 분석
-    
-    - **SSAFY 금융 API** 연동
-        - 계좌 거래 내역 조회
-        - 카드 결제 내역/카테고리 조회
-    - 소비 내역을 탄소 배출량으로 환산
-    
-    ### 🏆 챌린지 & 보상
-    
-    - 개인/그룹 챌린지 생성 및 참여
-    - 달성 시 포인트 & 뱃지 획득
-    - 포인트 → 숲 성장(심기/물주기)
-    
-    ### 📊 탄소 발자국 리포트
-    
-    - 일/주/월 단위 통계
-    - 전주 대비 탄소 절감량 비교
-    
-    ### ⌚ 스마트워치 연동
-    
-    - 코코 캐릭터를 워치 페이스로 표시
-    - 걸음 수 → 절약량 환산
-    - 탄소 점수 위젯
+# 🌴 코코의 숲
+
+## 목차
+- [프로젝트 소개](#프로젝트-소개)
+- [기술 스택](#기술-스택)
+- [주요 기능](#주요-기능)
+- [시스템 아키텍처](#시스템-아키텍처)
+- [실행 방법](#실행-방법)
+- [서비스 화면](#서비스-화면)
+- [개발 팀 소개](#개발-팀-소개)
+
+## 프로젝트 소개
+
+> **코코의 숲**은 금융 소비 내역을 기반으로 탄소 배출량을 환산하고, 챌린지와 게임 요소를 통해 환경 보호를 즐겁게 실천하도록 돕는 서비스입니다.
+>
+> 소비 내역 → 탄소 배출량 → 챌린지 → 포인트 → 숲 성장으로 이어지는 구조를 통해, 사용자가 자연스럽게 친환경 습관을 형성할 수 있도록 설계했습니다.
+>
+
+- **개발 기간** : 2025.09.2 ~ 2025.10.2
+- **플랫폼** : Android (React Native/Expo)
+- **개발 인원** : 6명
+
+## 기술 스택
+
+### Frontend
+<div align="center">
+  <img src="https://img.shields.io/badge/react%20native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+  <img src="https://img.shields.io/badge/expo-000000?style=for-the-badge&logo=expo&logoColor=white">
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+  <img src="https://img.shields.io/badge/zustand-000000?style=for-the-badge&logo=zustand&logoColor=white">
+</div>
+
+### Backend
+<div align="center">
+  <img src="https://img.shields.io/badge/spring%20boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+  <img src="https://img.shields.io/badge/jpa-59666C?style=for-the-badge&logo=hibernate&logoColor=white">
+  <img src="https://img.shields.io/badge/clova%20ocr-03C75A?style=for-the-badge&logo=naver&logoColor=white">
+</div>
+
+### DevOps & Infra
+<div align="center">
+  <img src="https://img.shields.io/badge/aws%20ec2-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+  <img src="https://img.shields.io/badge/vertex%20ai-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white">
+  <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
+  <img src="https://img.shields.io/badge/jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white">
+  <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
+</div>
+
+### Database
+<div align="center">
+  <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
+</div>
+
+
+---
+
+## 주요 기능
+
+| 구분 | 구현 내용 |
+| --- | --- |
+| 홈(숲 화면) | 2D 아이소메트릭 숲 뷰, 나무 심기/물주기, 나무 상태(HP) 표시, 말풍선 안내 |
+| 금융 연동 | SSAFY 금융 API 연동, 계좌/카드 거래 내역 조회, 소비 내역 기반 탄소 배출량 환산 |
+| 대시보드 | 일/월별 리포트, 달력 기반 일자 선택, 카테고리별 배출량 차트, 상세 거래 내역 카드 |
+| 챌린지 | 출석/대중교통/텀블러 챌린지, 텀블러 영수증 OCR 인증, 보상 포인트 지급 |
+
+---
+
+## 시스템 아키텍처
+
+```mermaid
+flowchart LR
+  subgraph Mobile App
+    RN[React Native / Expo]
+  end
+
+  subgraph WearOS
+    WO[Kotlin WearOS App]
+  end
+
+  subgraph Backend
+    API[Spring Boot API]
+  end
+
+  subgraph Data
+    DB[(MySQL)]
+    Redis[(Redis)]
+  end
+
+  subgraph AI
+    OCR[OCR Service]
+    GCP[Google Cloud AI]
+  end
+
+  subgraph External
+    SSAFY[SSAFY 금융 API]
+  end
+
+  RN -->|REST| API
+  WO -->|REST| API
+  API --> DB
+  API --> Redis
+  API --> SSAFY
+  API --> OCR
+  API --> GCP
+```
+
+## 실행 방법
+
+### Frontend (React Native / Expo)
+```bash
+cd frontend/cocosforest
+npm install
+npm run start
+```
+
+### Backend (Spring Boot)
+```bash
+cd backend
+./gradlew bootRun
+```
+
+## 서비스 화면
+
+- 로그인 화면 및 메인화면 
+
+<img src="image/login.png" width="220" /> <img src="image/main.png" width="220" />
+
+- 대시보드 화면 
+
+<img src="image/dashboard_1.png" width="220" /> <img src="image/dashboard_2.png" width="220" /> <img src="image/dashboard_3.png" width="220" />
+
+- 챌린지 화면 (텀블러 영수증 인증) 
+
+<img src="image/challenge_1.png" width="220" /> <img src="image/challenge_2.png" width="220" /> <img src="image/challenge_3.png" width="220" /> 
+
+## 개발 팀 소개
+
+| 이름 | 역할 |
+| --- | --- |
+| 김태윤 (팀장) | 백엔드, DB 설계, 금융 API 연동 |
+| 권인 | 프론트엔드, 대시보드 API 연동 및 UI 구현, OCR API 연동 및 이미지 전처리 로직 설계, Expo 안드로이드 앱 빌드 |
+| 김민주 | 프론트엔드, 사용자인증 로직 및 페이지 구현 |
+| 정원준 | 백엔드 및 프론트엔드, 챌린지/보상 API 및 메인화면 구현 |
+| 박민수 | 인프라, CI/CD, 배포 관리 |
+| 박진주 | 프론트엔드, 챌린지/보상 API 연동 및 코코/숲 아트 에셋 제작 |
+
+---
