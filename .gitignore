@@ -1,0 +1,10 @@
+TIL/
+exec/
+
+.vscode/
+.claude/
+
+.DS_Store
+
+CHANGELOG_SUMMARY.md
+PROJECT_NOTES.md
